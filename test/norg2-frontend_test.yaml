@@ -1,0 +1,17 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Alert"
+metadata:
+  name: norg2-frontend-test
+  labels:
+    team: registre
+spec:
+  receivers:
+    slack:
+      channel: '#di_team_org'
+      #prependText: '<!here> | '
+  alerts:
+    - alert: applikasjon nede
+      expr: up{app="norg2-frontend", job="kubernetes-pods"} == 0
+      for: 2m
+      description: "{{ $labels.app }} er nede i {{ $labels.kubernetes_namespace }}"
+      action: "`kubectl describe pod {{ $labels.kubernetes_pod_name }} -n {{ $labels.kubernetes_namespace }}` for events, og `kubectl logs {{ $labels.kubernetes_pod_name }} -n {{ $labels.kubernetes_namespace }}` for logger"
