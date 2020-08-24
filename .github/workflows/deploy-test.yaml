@@ -5,6 +5,7 @@ on:
       - master
     paths:
       - '.nais/org-alerts-test.yaml'
+      - '.github/workflows/deploy-test.yaml'
 jobs:
   apply-alerts:
     name: Apply alerts to cluster
@@ -17,4 +18,4 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-fss
-          RESOURCE: .nais/org-alerts_test.yaml
+          RESOURCE: .nais/org-alerts-test.yaml
