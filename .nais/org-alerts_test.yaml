@@ -1,9 +1,9 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Alert"
 metadata:
-  name: org-alerts-test
+  name: team-org-alerts
   labels:
-    team: registre
+    team: org
 spec:
   receivers:
     slack:

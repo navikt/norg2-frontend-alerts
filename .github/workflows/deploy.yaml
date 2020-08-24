@@ -1,0 +1,20 @@
+name: Deploy alerts to NAIS
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.nais/org-alerts.yaml'
+jobs:
+  apply-alerts:
+    name: Apply alerts to cluster
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Deploy to prod
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-fss
+          RESOURCE: .nais/org-alerts.yaml
