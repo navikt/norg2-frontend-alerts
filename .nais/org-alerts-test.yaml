@@ -9,7 +9,6 @@ spec:
   receivers:
     slack:
       channel: '#org_preprod_alerts'
-      #prependText: '<!here> | '
   alerts:
     - alert: applikasjon nede
       expr: sum by (app, kubernetes_namespace, kubernetes_pod_name) (up{app=~"norg2-frontend|axsys|norg2|kodeverk|kodeverk-web|btsys|btsys-web", job="kubernetes-pods"}) == 0
